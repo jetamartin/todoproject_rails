@@ -1,6 +1,6 @@
 class ToDosController < ApplicationController
   def index
-    @to_dos = ToDo.all
+    @to_dos = ToDo.all.includes :tasks
     render('to_dos/index.html.erb')
   end
 
