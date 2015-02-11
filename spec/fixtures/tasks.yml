@@ -1,0 +1,18 @@
+task1:
+    name: Mow the lawn
+    to_do_id: 2
+
+task2:
+    name: Repaint light fixture
+    to_do_id: 2
+
+task3:
+    name: Pull the weeds in front line
+    to_do_id: 2
+task4:
+    name: Recompile code
+    to_do_id: 1
+task5:
+    name: Push code to GitHub
+    to_do_id: 1
+    
