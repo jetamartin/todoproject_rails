@@ -1,19 +1,26 @@
-<h1>To Do</h1>
+<h1>To Do Lists</h1>
 <ul>
   <% @to_dos.each do |to_do| %>
-  <li><%= to_do.name %></li>
-  <ul>
-    <% to_do.tasks.each do |task| %>
-      <li>
-        <form action="/tasks/<%= task.id %>" method="post">
-          <%= task.name %>
-          <input name="_method" type="hidden" value="patch">
-          <input name="task[is_done]" type="hidden" value="">
-          <input class="mark_done" type="checkbox" value="false">
-        </form>
-      </li>
-    <% end %>
-  </ul>
+  <li><a href="/to_dos/<%= to_do.id %>"><%= todo.name %</a></li>
 
+
+
+<!-- The html/code below uses checkboxes. Decided not to use this because
+checkboxes have some tricky aspects to them. Instead of displaying To do list
+and task on the same page as To Do List user will need to click on To do list
+and it will take them to the specific task associated with the clicked list  -->
+  <!-- <ul>
+
+    # <form action="/tasks/<%#= task.id %>" method="post">
+    #   <%# to_do.tasks.each do |task| %>
+    #   <li>
+    #       <%# task.name %>
+    #       <input name="_method" type="hidden" value="patch">
+    #       <input name="task[task.id][is_done]" type="hidden" value="0">
+    #       <input name="task[task.id][is_done]" class="mark_done" type="checkbox" value="1">
+    #     </form>
+    #   </li>
+    # <%# end %>
+  </ul> -->
   <% end %>
 </ul>
