@@ -1,9 +1,15 @@
 <h1>To Do Lists</h1>
-<ul>
-  <% @to_dos.each do |to_do| %>
-  <li><a href="/to_dos/<%= to_do.id %>"><%= todo.name %</a></li>
-
-
+<ul class=no_bullets>
+<!-- Created to_dos var outside of block for access in if stmnt  -->
+  <% to_dos = ToDo.all %>
+  <% to_dos.each do |to_do| %>
+  <li><%= link_to(to_do.name,
+        controller: 'to_dos', action: 'show', id: to_do.id) %> </li>
+  <% end %>
+  <% if to_dos.size == 0 %>
+  <em>You haven't created any To Do List yet! That's your first To Do!!!</em>
+  <% end %>
+</ul>
 
 <!-- The html/code below uses checkboxes. Decided not to use this because
 checkboxes have some tricky aspects to them. Instead of displaying To do list
@@ -22,5 +28,3 @@ and it will take them to the specific task associated with the clicked list  -->
     #   </li>
     # <%# end %>
   </ul> -->
-  <% end %>
-</ul>

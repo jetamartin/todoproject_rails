@@ -1,7 +1,7 @@
-<h1>Tasks Items for:  <%= @to_do.name %></h1>
+<h1>To Do's for: <%= @to_do.name %></h1>
 <p>  Here is the list of items: </p>
   <form id="form_id" action="/to_dos/<%= @to_do.id %>" method="post">
-    <ul>
+    <ul class="no_bullets">
     <!--
     For each task on the page we will need to create a hash with the following
     structure (this is what the statement task[task.id][is_done] is doing)
@@ -14,17 +14,24 @@
     {       {3: {is_done: true}}}
     -->
     <input name="_method" type="hidden" value="patch">
-    <% logger.debug @to_do.tasks.inspect %>
-      <% @to_do.tasks.each do |task| %>
-        <li class=no_bullets>
+    <!-- <% logger.debug @to_do.tasks.inspect %> -->
+      <% to_do_tasks = @to_do.tasks %>
+      <% to_do_tasks.each do |task| %>
+        <li>
           <input name="tasks_attributes[][id]" type="hidden" value="<%= task.id %>">
-          <input name="tasks_attributes[][is_done]" type="hidden" value="0">
+          <!-- <input name="tasks_attributes[][is_done]" type="hidden" value="0"> -->
           <input name="tasks_attributes[][is_done]" class="mark_done" type="checkbox" value="1">
           <%= task.name %>
         </li>
       <% end %>
-      <button type="submit">Update</button>
-
     </ul>
+    <!-- If no task print no task message  -->
+    <% if to_do_tasks.size == 0 %>
+      <em>You haven't created any To Do items for this list yet</em>
+    <% else %>
+      <div id="updateBtn">
+        <button type="submit">Update</button>
+      </div>
+    <% end %>
   </form>
 </p>

@@ -10,9 +10,8 @@ task3:
     name: Pull the weeds in front line
     to_do_id: 2
 task4:
-    name: Recompile code
+    name: Recompile code and notify team
     to_do_id: 1
 task5:
     name: Push code to GitHub
     to_do_id: 1
-    
