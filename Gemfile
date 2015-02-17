@@ -8,6 +8,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'tzinfo-data'
+gem 'jquery-turbolinks'
 
 group :development do
   gem 'better_errors'

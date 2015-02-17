@@ -15,7 +15,7 @@ class ToDosController < ApplicationController
     # Create the update query
     @to_do.update params[:to_do]
 
-    render 'to_dos/show.html.erb'
+    redirect_to :back #('/to_dos')
   end
 
 end
