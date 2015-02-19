@@ -1,10 +1,45 @@
 $(document).ready(function() {
   $('.mark_done').click(function(){
-    var me = $(this);
-    me.prev().val(me.prop('checked') ? '1' : '0')
-    // console.log(this)
-    // Removed this line because we don't want checking box to submit the form
-    // since I added a button for the entire form.
-    // me.parent().submit()
+    var current = $(this);
+    current.prev().val(current.prop('checked') ? '1' : '0')
+    current.parent().submit()
+
   });
+  setTimeout(function() {
+    $('.notice').toggle('fade', 1000)
+  }, 1000)
+
+
+// http://www.kirupa.com/html5/setting_css_styles_using_javascript.htm
 });
+function addClass(element, classToAdd) {
+    var currentClassValue = element.className;
+
+    if (currentClassValue.indexOf(classToAdd) == -1) {
+        if ((currentClassValue == null) || (currentClassValue === "")) {
+            element.className = classToAdd;
+        } else {
+            element.className += " " + classToAdd;
+        }
+    }
+}
+
+function removeClass(element, classToRemove) {
+    var currentClassValue = element.className;
+
+    if (currentClassValue == classToRemove) {
+        element.className = "";
+        return;
+    }
+
+    var classValues = currentClassValue.split(" ");
+    var filteredList = [];
+
+    for (var i = 0 ; i < classValues.length; i++) {
+        if (classToRemove != classValues[i]) {
+            filteredList.push(classValues[i]);
+        }
+    }
+
+    element.className = filteredList.join(" ");
+}

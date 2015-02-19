@@ -1,3 +1,55 @@
-ul.no_bullets {
-  list-style-type: none;
+table, th, td {
+   border: 1px solid green;
+}
+th {
+    background-color: green;
+    color: white;
+}
+caption {
+    display: table-caption;
+    text-align: left;
+    color: green;
+    font-size: large;
+    font-weight: bold;
+}
+h1 {
+    text-shadow: 2px 2px 8px #33CC33;
+}
+
+.notice {
+  max-width: 500px;
+  background-color: yellow;
+  margin: 15px;
+  padding: 10px;
+  border: solid 5px green;
+  box-shadow: 10px 10px 5px #888888;
+  border-radius: 15px;
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.success_update {
+  font-weight: bold;
+  font-style: italic;
+  color: green;
+}
+.task_status {
+  font-weight: bold;
+  font-style: italic;
+  color: green;
+}
+.task_done {
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: line-through;
+  color: red;
 }

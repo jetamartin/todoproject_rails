@@ -1,40 +1,60 @@
-<h1>Tasks for: <%= @to_do.name %> List</h1>
-<p>  Here is the list of items: </p>
-  <form id="form_id" action="/to_dos/<%= @to_do.id %>" method="post">
-    <ul class="no_bullets">
-    <!--
+<h1><%= @to_do.name %> List</h1>
 
-    -->
-    <input name="_method" type="hidden" value="patch">
-    <!-- <% logger.debug @to_do.tasks.inspect %> -->
-      <!-- Need to move DB query (@tasks =@to_do.tasks.order 'name ASC' into to_dos_controller)  -->
-      <!-- Then change references in view to @tasks -->
-      <% to_do_tasks = @to_do.tasks.order 'name ASC' %>
-      <% to_do_tasks.each do |task| %>
-        <li class=no_bullets>
-          <!-- Set up this form to use Active Record Nested Attributes  -->
-          <!-- To use this I had to (1) add the "acceptes_nested_attributes_for" -->
-          <!-- in the to_do.rb model (2) create appropriate structure that  -->
-          <!-- nested attributes was expecting e.g., "task_attributes[][] noted"-->
-          <!-- below in the name field. Using nested attributes allows you to  -->
-          <!-- easily build a structure that the Model can then parse and extract -->
-          <!-- the parameters needed to build the appropriate structures -->
-          <input name="to_do[tasks_attributes][][id]" type="hidden" value="<%= task.id %>">
-          <input name="to_do[tasks_attributes][][is_done]" type="hidden" value="<%= task.is_done ? 1 : 0 %>">
-          <!-- Added -->
-          <!-- Got rid of name="tasks_attributes.... stuff..not needed because
-                javascript code is getting value of checkbox and saving it in prev value field"-->
-          <input class="mark_done" type="checkbox" value="1" <%= 'checked' if task.is_done %>>
-          <%= task.name %>
-        </li>
-      <% end %>
-    </ul>
+<table id="t01">
+  <caption>To Do Items:</caption>
+  <tr>
+    <th>Status</th>
+    <th>Name</th>
+    <th>Due Date</th>
+    <th>Actions</th>
+  </tr>
+
+  <% to_do_tasks = @to_do.tasks.order 'name ASC' %>
+  <% to_do_tasks.each do |task| %>
+  <tr >
+    <td>
+      <form id="form_id" action="/to_dos/<%= @to_do.id %>" method="post">
+        <input name="_method" type="hidden" value="patch" />
+        <input name="to_do[tasks_attributes][][id]" type="hidden" value="<%= task.id %>">
+        <input name="to_do[tasks_attributes][][is_done]" type="hidden" value="<%= task.is_done ? 1 : 0 %>">
+        <input class="mark_done" type="checkbox" value="1" <%= 'checked' if task.is_done %>>
+      </form>
+    </td>
+    <td class="task_status <%= 'task_done' if task.is_done %>" ><%= task.name %></td>
+    <td><%= task.due_date %></td>
+    <td>
+      <!-- <select>
+        <option value="tbd" selected>TBD</option>
+        <option value="done">DONE</option>
+      </select> -->
+      <button name="button">Edit</button>
+      <button name="button">Archive</button>
+      <button name="button">Delete</button>
+    </td>
+
+  </tr>
+
+  <% end %>
+</table>
     <!-- If no task print no task message  -->
     <% if to_do_tasks.size == 0 %>
       <em>You haven't created any To Do items for this list yet</em>
-    <% else %>
-      <div id="updateBtn">
-        <button type="submit">Update</button>
-      </div>
     <% end %>
-  </form>
+    <% if @to_do.errors.any? %>
+      <div id="results">
+        <h2><%= pluralize(@to_do.errors.count, "error") %> prohibited the staus from being saved:</h2>
+        <ul>
+        <% @to_do.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% else %>
+      <% if flash[:notice] %>
+        <div class="notice">
+          <p>
+            Congratulations!!! <span class = "success_update"> '<%= flash[:notice] %>'</span> status was updated successfully.
+          </p>
+        </div>
+      <% end %>
+    <% end %>
