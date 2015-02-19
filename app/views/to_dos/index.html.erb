@@ -1,15 +1,42 @@
-<h1>To Do Lists</h1>
-<ul class=no_bullets>
-<!-- Created to_dos var outside of block for access in if stmnt  -->
-  <% to_dos = ToDo.all %>
-  <% to_dos.each do |to_do| %>
-  <li><%= link_to(to_do.name,
-        controller: 'to_dos', action: 'show', id: to_do.id) %> </li>
-  <% end %>
-  <% if to_dos.size == 0 %>
+<h1>All To Do Lists</h1>
+<form>
+  <table >
+    <tr>
+      <th>Name</th>
+      <th>Tasks<br>TBD</th>
+      <th>List Actions</th>
+    </tr>
+
+    <% to_dos = ToDo.all %>
+    <% to_dos.each do |to_do| %>
+    <tr >
+      <td><%= link_to(to_do.name,
+                controller: 'to_dos', action: 'show', id: to_do.id) %>
+      </td>
+      <td>
+        <%= to_do.open_tasks_count %>
+      </td>
+      <td>
+        <!-- <select>
+          <option value="tbd" selected>TBD</option>
+          <option value="done">DONE</option>
+        </select> -->
+        <button name="button">Edit</button>
+        <button name="button">Archive</button>
+        <button name="button">Delete</button>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</form>
+<div class="create_new_button">
+  <button type="button" class="btn">Create New List</button>
+</div>
+
+<% if to_dos.size == 0 %>
   <em>You haven't created any To Do List yet! That's your first To Do!!!</em>
-  <% end %>
-</ul>
+<% end %>
+
 
 <!-- The html/code below uses checkboxes. Decided not to use this because
 checkboxes have some tricky aspects to them. Instead of displaying To do list

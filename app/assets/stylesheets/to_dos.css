@@ -53,3 +53,6 @@ h1 {
   text-decoration: line-through;
   color: red;
 }
+.create_new_button {
+  margin: 20px;
+}
