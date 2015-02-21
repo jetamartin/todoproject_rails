@@ -1,45 +1,53 @@
 <h1><%= @to_do.name %> List</h1>
+<div class="container">
+  <table id="t01">
+    <caption>To Do Items:</caption>
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Due Date</th>
+      <th>Task Actions</th>
+    </tr>
 
-<table id="t01">
-  <caption>To Do Items:</caption>
-  <tr>
-    <th>Status</th>
-    <th>Name</th>
-    <th>Due Date</th>
-    <th>Task Actions</th>
-  </tr>
+    <% to_do_tasks = @to_do.tasks.order 'name ASC' %>
+    <% to_do_tasks.each do |task| %>
+    <tr >
+      <td>
+        <form id="form_id" action="/to_dos/<%= @to_do.id %>" method="post">
+          <input name="_method" type="hidden" value="patch" />
+          <input name="to_do[tasks_attributes][][id]" type="hidden" value="<%= task.id %>">
+          <input name="to_do[tasks_attributes][][is_done]" type="hidden" value="<%= task.is_done ? 1 : 0 %>">
+          <input class="mark_done" type="checkbox" value="1" <%= 'checked' if task.is_done %>>
+        </form>
+      </td>
+      <td class="task_status <%= 'task_done' if task.is_done %>" ><%= task.name %></td>
+      <td><%= task.due_date %></td>
+      <td>
+        <div class="row">
+          <div class="col-sm-3">
+            <%#= button_to "Edit", { action: "edit", id: to_do.id }, method: :edit, class: "btn"%>
+            <%= button_to "Edit", edit_task_path(task), method: :get, class: "btn" %>
+          </div>
+          <!-- Need archive to do something different than destroy. Specifically I want archive
+          to remove item from list but not delete from database. User can recover/display archived items
+          will need to add an archive field to both to_dos and tasks tables -->
+          <div class="col-sm-4">
+            <%= button_to "Archive", { action: "destroy", id: task.id }, method: :edit, class: "btn"%>
+          </div>
+          <div class="col-sm-4">
+            <%= button_to "Delete", { action: "destroy", id: task.id }, method: :edit, class: "btn"%>
+          </div>
+        </div>
+      </td>
+    </tr>
 
-  <% to_do_tasks = @to_do.tasks.order 'name ASC' %>
-  <% to_do_tasks.each do |task| %>
-  <tr >
-    <td>
-      <form id="form_id" action="/to_dos/<%= @to_do.id %>" method="post">
-        <input name="_method" type="hidden" value="patch" />
-        <input name="to_do[tasks_attributes][][id]" type="hidden" value="<%= task.id %>">
-        <input name="to_do[tasks_attributes][][is_done]" type="hidden" value="<%= task.is_done ? 1 : 0 %>">
-        <input class="mark_done" type="checkbox" value="1" <%= 'checked' if task.is_done %>>
-      </form>
-    </td>
-    <td class="task_status <%= 'task_done' if task.is_done %>" ><%= task.name %></td>
-    <td><%= task.due_date %></td>
-    <td>
-      <!-- <select>
-        <option value="tbd" selected>TBD</option>
-        <option value="done">DONE</option>
-      </select> -->
-      <!-- <button name="button">Edit</button> -->
-      <%= button_to "Edit", edit_task_path(task), method: :get, class: "btn" %>
-      <button name="button" class="btn">Archive</button>
-      <button name="button" class="btn">Delete</button>
-    </td>
+    <% end %>
+  </table>
 
-  </tr>
-
-  <% end %>
-</table>
-<div class="create_new_button">
-  <%= button_to "Create New Task", new_task_path, method: :get %>
-  <!-- <button type="button" class="btn">Create New Task</button> -->
+  <div class="create_new_button">
+    <%= button_to "Create New Task", new_task_path, method: :get, class: "btn" %>
+    <!-- <button type="button" class="btn">Create New Task</button> -->
+  </div>
 </div>
     <!-- If no task print no task message  -->
     <% if to_do_tasks.size == 0 %>

@@ -24,6 +24,10 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
   end
+ # Added this as a placeholder
+  def archive
+    @task = Task.find(params[:id])
+  end
 
 
   #   @task = Task.find(params[:id])

@@ -32,5 +32,7 @@ class ToDosController < ApplicationController
       render('to_dos/show.html.erb')
     end
   end
+  def archive
+  end
 
 end
