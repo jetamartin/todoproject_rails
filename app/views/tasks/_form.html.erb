@@ -1,0 +1,48 @@
+<h1>Create/Edit task </h1>
+
+
+<% if !@task.new_record? %>
+  <input name="_method" type="hidden" value="patch" />
+  <form id="form_id" action="/tasks/<%= @task.id %>" method="post">
+    <input name="_method" type="hidden" value="patch" />
+<% else %>
+  <form id="form_id" action="/tasks/" method="post">
+<% end %>
+
+<div class="container">
+
+  <!-- <div class="form-group">
+    <%#= select_tag(:to_do_id, options_for_select(@to_do_names_and_ids) %>
+  </div> -->
+
+  <div class="form-group">
+    <label for="task_name">Task Name:</label>
+    <input name="task[name]" id="task_name" class="form-control" type="text" value="<%=@task.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="due_date">Due Date:</label>
+    <input name="task[due_date]" id="due_date" class="form-control" type="date" value="<%=@task.due_date %>">
+  </div>
+
+  <div class="form-group">
+    <label for="due_date">Status:</label>
+    <input name="task[is_done]" type="hidden" value="<%= @task.is_done ? 1 : 0 %>">
+    <input name="task[is_done]" type="checkbox" value="1" <%= 'checked' if @task.is_done %>>
+  </div>
+
+  <div class="form-group">
+    <label for="completion_date">Completion Date:</label>
+    <input name="" id="completion_date" class="form-control" type="text" >
+  </div>
+
+  <div class="form-group">
+    <label for="notes">Notes:</label>
+    <input name="" id="notes" class="form-control" type="text">
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn">Save Task</button>
+  </div>
+  </form>
+</div>

@@ -1,9 +1,19 @@
 table, th, td {
    border: 1px solid green;
+   margin: 15px;
+   padding: 15px;
+   text-align: center;
+
+
 }
 th {
     background-color: green;
     color: white;
+    align: center;
+}
+
+td .mark_done {
+  text-align: center
 }
 caption {
     display: table-caption;

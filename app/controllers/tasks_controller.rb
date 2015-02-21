@@ -6,11 +6,24 @@ class TasksController < ApplicationController
 
 # Started Update Method -- but not finished or tested. Need to come back to this
   def update
-    params[:task].each {|taskid|
-      task. 
+    @task = Task.find(params[:id])
+    if @task
+      @task.update(params[:task])
+    end
+    redirect_to(to_do_path(@task.to_do_id))
 
   end
 
+  def new
+    @tasks = Task.new
+    @to_do_names_and_ids = ToDo.all.map{|t| [t.name, t.id]}
+    render('tasks/new.html.erb')
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+
+  end
 
 
   #   @task = Task.find(params[:id])

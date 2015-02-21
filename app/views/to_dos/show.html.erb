@@ -27,7 +27,8 @@
         <option value="tbd" selected>TBD</option>
         <option value="done">DONE</option>
       </select> -->
-      <button name="button">Edit</button>
+      <!-- <button name="button">Edit</button> -->
+      <%= button_to "Edit", edit_task_path(task), method: :get %>
       <button name="button">Archive</button>
       <button name="button">Delete</button>
     </td>
@@ -36,6 +37,10 @@
 
   <% end %>
 </table>
+<div class="create_new_button">
+  <%= button_to "Create New Task", new_task_path, method: :get %>
+  <!-- <button type="button" class="btn">Create New Task</button> -->
+</div>
     <!-- If no task print no task message  -->
     <% if to_do_tasks.size == 0 %>
       <em>You haven't created any To Do items for this list yet</em>

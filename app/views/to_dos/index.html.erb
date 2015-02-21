@@ -21,7 +21,8 @@
           <option value="tbd" selected>TBD</option>
           <option value="done">DONE</option>
         </select> -->
-        <button name="button">Edit</button>
+        <!-- <button name="button">Edit</button> -->
+        <%= button_to "Edit", { action: "edit", id: @task.id }, method: :edit %>
         <button name="button">Archive</button>
         <button name="button">Delete</button>
       </td>
