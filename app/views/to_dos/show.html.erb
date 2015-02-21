@@ -28,9 +28,9 @@
         <option value="done">DONE</option>
       </select> -->
       <!-- <button name="button">Edit</button> -->
-      <%= button_to "Edit", edit_task_path(task), method: :get %>
-      <button name="button">Archive</button>
-      <button name="button">Delete</button>
+      <%= button_to "Edit", edit_task_path(task), method: :get, class: "btn" %>
+      <button name="button" class="btn">Archive</button>
+      <button name="button" class="btn">Delete</button>
     </td>
 
   </tr>

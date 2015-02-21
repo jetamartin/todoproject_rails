@@ -17,14 +17,9 @@
         <%= to_do.open_tasks_count %>
       </td>
       <td>
-        <!-- <select>
-          <option value="tbd" selected>TBD</option>
-          <option value="done">DONE</option>
-        </select> -->
-        <!-- <button name="button">Edit</button> -->
-        <%= button_to "Edit", { action: "edit", id: @task.id }, method: :edit %>
-        <button name="button">Archive</button>
-        <button name="button">Delete</button>
+        <%= button_to "Edit", { action: "edit", id: to_do.id }, method: :edit, class: "btn"%>
+        <button name="button" class="btn">Archive</button>
+        <button name="button" class="btn">Delete</button>
       </td>
     </tr>
     <% end %>
