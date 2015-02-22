@@ -33,9 +33,9 @@ class ToDosController < ApplicationController
     end
   end
   def new_task
-    @to_do_id = ToDo.find(params[:id])
+    @to_do = ToDo.find(params[:id])
     puts "Task Controller: New Method: To do id from params #{params[:id]}"
-    puts "Task Controller: New Method: To do id from @to_do_id instance var #{@to_do_id}"
+    puts "Task Controller: New Method: To do id from @to_do_id instance var #{@to_do.id}"
     @task = Task.new
     # Need to add current to_do id into new to set select button
     @to_do_names_and_ids = ToDo.all.map{|t| [t.name, t.id]}
