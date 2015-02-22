@@ -15,9 +15,25 @@ class TasksController < ApplicationController
   end
 
   def new
-    @tasks = Task.new
+    @to_do_id = params[:id]
+    puts "Task Controller: New Method: To do id from params #{params[:id]}"
+    puts "Task Controller: New Method: To do id from @to_do_id instance var #{@to_do_id}"
+    @task = Task.new
+    # Need to add current to_do id into new to set select button
     @to_do_names_and_ids = ToDo.all.map{|t| [t.name, t.id]}
-    render('tasks/new.html.erb')
+    render('tasks/edit.html.erb')
+  end
+
+  def create
+    @task = Task.new
+    @task.to_do_id = params[:to_do_id]
+
+    puts "To_Do_ID value in params #{params[:to_do_id]}"
+    puts "To_Do_ID in task record #{@task.to_do_id}"
+
+    @task = Task.create(params[:task])
+
+    render('to_dos/show.html.erb')
   end
 
   def edit
