@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :to_dos do
+    # resources :tasks  (need this line and not next three lines when I do nested resources)
     member do
       get 'new_task'
     end

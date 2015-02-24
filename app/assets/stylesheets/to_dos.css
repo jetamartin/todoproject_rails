@@ -1,8 +1,8 @@
-table, th, td {
+table, th, td{
    border: 1px solid green;
    margin: 15px;
    padding: 15px;
-   text-align: center;
+
 
 
 }

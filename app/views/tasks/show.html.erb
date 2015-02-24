@@ -1,0 +1,73 @@
+<!-- <h1><%#= link_to('To Do List:', to_dos_path) %> <%#= @to_do.name %> </h1> -->
+<h1><%= link_to(@to_do.name, to_dos_path) %>  </h1>
+<% to_do_tasks = @to_do.tasks.order 'name ASC' %>
+<!-- If no task print no task message  -->
+<% if to_do_tasks.size == 0 %>
+  <em>You haven't created any To Do items for this list yet. Click "Create Task" Button to add new Task in this list </em>
+<% else %>
+  <table id="t01">
+    <!-- <caption>To Do Items:</caption> -->
+    <tr>
+      <th>Status</th>
+      <th>Task Name</th>
+      <th>Due Date</th>
+      <th>Task Actions</th>
+    </tr>
+
+    <!-- <% to_do_tasks = @to_do.tasks.order 'name ASC' %> -->
+    <% to_do_tasks.each do |task| %>
+      <tr <%#= classify_task_by_age %>>
+        <td>
+          <form id="form_id" action="/tasks/<%= task.id %>" method="post">
+
+            <input name="_method" type="hidden" value="patch" />
+            <!-- <input name="task[id]" type="hidden" value="<%= task.id %>"> -->
+            <input name="task[is_done]" type="hidden" value="<%= task.is_done ? 1 : 0 %>">
+            <input class="mark_done" type="checkbox" value="1" <%= 'checked' if task.is_done %>>
+
+            <!-- <input name="_method" type="hidden" value="patch" />
+            <input name="to_do[tasks_attributes][][id]" type="hidden" value="<%#= task.id %>">
+            <input name="to_do[tasks_attributes][][is_done]" type="hidden" value="<%#= task.is_done ? 1 : 0 %>">
+            <input class="mark_done" type="checkbox" value="1" <%= 'checked' if task.is_done %>> -->
+          </form>
+        </td>
+        <td class="task_status <%= 'task_done' if task.is_done %>" ><%= task.name %></td>
+        <td><%= task.due_date %></td>
+        <td>
+          <div class="row">
+            <div class="col-sm-3">
+              <%#= button_to "Edit", { action: "edit", id: to_do.id }, method: :edit, class: "btn"%>
+              <%= button_to "Edit", edit_task_path(task), method: :get, class: "btn" %>
+            </div>
+            <!-- Need archive to do something different than destroy. Specifically I want archive
+            to remove item from list but not delete from database. User can recover/display archived items
+            will need to add an archive field to both to_dos and tasks tables -->
+            <div class="col-sm-4">
+              <%= button_to "Archive", { action: "destroy", id: task.id }, method: :edit, class: "btn"%>
+            </div>
+            <div class="col-sm-4">
+              <%= button_to "Delete", task_path(task), method: :delete, data: { confirm: "Are you sure?" },  class: "btn"%>
+            </div>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
+
+<div class="create_new_button">
+  <%= button_to "Create New Task", new_task_to_do_path, method: :get, class: "btn" %>
+  <!-- <button type="button" class="btn">Create New Task</button> -->
+</div>
+
+
+    <% if @to_do.errors.any? %>
+      <div id="results">
+        <h2><%= pluralize(@to_do.errors.count, "error") %> prohibited the staus from being saved:</h2>
+        <ul>
+        <% @to_do.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>

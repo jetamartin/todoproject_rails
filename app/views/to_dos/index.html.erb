@@ -1,44 +1,44 @@
 <h1>All To Do Lists</h1>
-<div class="container">
-  <table >
-  <tr>
-    <th>Name</th>
-    <th>Tasks<br>TBD</th>
-    <th>List Actions</th>
-  </tr>
+<table >
+<tr>
+  <th>Name</th>
+  <th>Tasks<br>TBD</th>
+  <th>List Actions</th>
+</tr>
 
-  <% to_dos = ToDo.all %>
-  <% to_dos.each do |to_do| %>
-  <tr >
-    <td><%= link_to(to_do.name,
-              controller: 'to_dos', action: 'show', id: to_do.id) %>
-    </td>
-    <td>
-      <%= to_do.open_tasks_count %>
-    </td>
-    <td>
-      <div class="row">
-        <div class="col-sm-3">
-          <%= button_to "Edit", { action: "edit", id: to_do.id }, method: :edit, class: "btn"%>
-        </div>
-        <!-- Need archive to do something different than destroy. Specifically I want archive
-        to remove item from list but not delete from database. User can recover/display archived items
-        will need to add an archive field to both to_dos and tasks tables -->
-        <div class="col-sm-4">
-          <%= button_to "Archive", { action: "destroy", id: to_do.id }, method: :edit, class: "btn"%>
-        </div>
-        <div class="col-sm-4">
-          <%= button_to "Delete", { action: "destroy", id: to_do.id }, method: :edit, class: "btn"%>
-        </div>
+<% to_dos = ToDo.all %>
+<% to_dos.each do |to_do| %>
+<tr >
+  <td><%= link_to(to_do.name,
+            controller: 'to_dos', action: 'show', id: to_do.id) %>
+  </td>
+  <td>
+    <%= to_do.open_tasks_count %>
+  </td>
+  <td>
+    <div class="row">
+      <div class="col-sm-3">
+        <%= button_to "Edit", edit_to_do_path(to_do.id), method: :get, class: "btn"%>
       </div>
-    </td>
-  </tr>
-  <% end %>
-  </table>
-  <div class="create_new_button">
-  <button type="button" class="btn">Create New List</button>
-  </div>
+      <!-- Need archive to do something different than destroy. Specifically I want archive
+      to remove item from list but not delete from database. User can recover/display archived items
+      will need to add an archive field to both to_dos and tasks tables -->
+      <div class="col-sm-4">
+        <%= button_to "Archive", { action: "destroy", id: to_do.id }, method: :edit, class: "btn"%>
+      </div>
+      <div class="col-sm-4">
+        <%= button_to "Delete", { action: "destroy", id: to_do.id }, method: :edit, class: "btn"%>
+      </div>
+    </div>
+  </td>
+</tr>
+<% end %>
+</table>
+
+<div class="create_new_button">
+  <%= button_to "Create New To Do List", new_to_do_path, method: :get, class: "btn" %>
 </div>
+
 
 <% if to_dos.size == 0 %>
   <em>You haven't created any To Do List yet! That's your first To Do!!!</em>

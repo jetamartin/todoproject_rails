@@ -11,8 +11,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>  <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="container">
+    <% if flash[:notice] %>
+      <div class="notice">
+        <p>
+          <%= flash[:notice] %>
+          Congratulations!!! <span class = "success_update"> '<%= flash[:notice] %>'</span> status was updated successfully.
+        </p>
+      </div>
+    <% end %>
+    <%= yield %>
+  </div>
 </body>
 </html>

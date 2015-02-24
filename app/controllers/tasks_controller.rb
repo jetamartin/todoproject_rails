@@ -10,14 +10,14 @@ class TasksController < ApplicationController
     if @task
       @task.update(params[:task])
     end
+
+    flash[:notice] = @task.name
     redirect_to(to_do_path(@task.to_do_id))
 
   end
 
   def new
     @to_do_id = params[:id]
-    puts "Task Controller: New Method: To do id from params #{params[:id]}"
-    puts "Task Controller: New Method: To do id from @to_do_id instance var #{@to_do_id}"
     @task = Task.new
     # Need to add current to_do id into new to set select button
     @to_do_names_and_ids = ToDo.all.map{|t| [t.name, t.id]}
@@ -27,22 +27,28 @@ class TasksController < ApplicationController
   def create
     @task = Task.new
     @task.to_do_id = params[:to_do_id]
-
-    puts "To_Do_ID value in params #{params[:to_do_id]}"
-    puts "To_Do_ID in task record #{@task.to_do_id}"
-
     @task = Task.create(params[:task])
-
-    render('to_dos/show.html.erb')
+    # Need to retrieve to_do record as it is required for show view
+    @to_do = ToDo.find(@task.to_do_id)
+    redirect_to(to_do_path(@task.to_do_id))
   end
 
   def edit
     @task = Task.find(params[:id])
-
+    @to_do = ToDo.find(@task.to_do_id)
+    @to_do_names_and_ids = ToDo.all.map{|t| [t.name, t.id]}
   end
  # Added this as a placeholder
   def archive
     @task = Task.find(params[:id])
+  end
+
+  def destroy
+    @task = Task.find params[:id]
+    @to_do = @task.to_do
+    @task.destroy
+    flash[:notice] = @task.name
+    redirect_to(@to_do)
   end
 
 
