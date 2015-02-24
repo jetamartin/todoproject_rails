@@ -64,8 +64,10 @@ class ToDosController < ApplicationController
   def archive
 
   end
-  def delete
-    ToDo.destroy(params(:id))
+  def destroy
+    @to_do = ToDo.find(params[:id])
+    @to_do.destroy
+    flash[:notice] = @to_do.name
     redirect_to(to_dos_path)
   end
 

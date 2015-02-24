@@ -27,7 +27,7 @@
         <%= button_to "Archive", { action: "destroy", id: to_do.id }, method: :edit, class: "btn"%>
       </div>
       <div class="col-sm-4">
-        <%= button_to "Delete", { action: "destroy", id: to_do.id }, method: :edit, class: "btn"%>
+        <%= button_to "Delete", to_do_path(to_do), method: :delete, data: { confirm: "Are you sure? \b Deleting a To Do List will result in deletion of its associated tasks. Deleted list (and associated task) cannot be recovered" }, class: "btn"%>
       </div>
     </div>
   </td>
