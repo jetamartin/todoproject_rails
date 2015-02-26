@@ -17,7 +17,10 @@ class TasksController < ApplicationController
   end
 
   def new
-    @to_do_id = params[:id]
+    @to_do = ToDo.find(params[:id])
+    puts "To Do found = #{@to_do}"
+#    @to_do_id = params[:id]
+
     @task = Task.new
     # Need to add current to_do id into new to set select button
     @to_do_names_and_ids = ToDo.all.map{|t| [t.name, t.id]}
@@ -34,7 +37,11 @@ class TasksController < ApplicationController
   end
 
   def edit
+
     @task = Task.find(params[:id])
+    puts "=====> Edit Task Name #{@task.name}"
+    puts "=====> To Do Name: #{@task.to_do.name}"
+    # @to_do = @task.to_do
     @to_do = ToDo.find(@task.to_do_id)
     @to_do_names_and_ids = ToDo.all.map{|t| [t.name, t.id]}
   end

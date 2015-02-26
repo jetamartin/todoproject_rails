@@ -20,6 +20,24 @@
     <input name="task[name]" id="task_name" class="form-control" type="text" value="<%=@task.name %>">
   </div>
 
+
+<div class="form-group">
+  <label for="task[priority]">Priority: </label> <br>
+  <%= select_tag("task[priority]", options_for_select(Task.priorities.keys.map{|p| [p.humanize, p]}, @task.priority)) %>
+
+
+</div>
+<!-- The html is the manual way to make the helper work work  -->
+<!-- <div class="form-group">
+  <label for="priority">Task Priority:</label> <br>
+  <select id="task_priority" name="task[priority]">
+    <option value="urgent">Urgent</option>
+    <option value="high">High</option>
+    <option value="medium">Medium</option>
+    <option value="low">Low</option>
+  </select>
+</div> -->
+
   <div class="form-group">
     <label for="due_date">Due Date:</label>
     <input name="task[due_date]" id="due_date" class="form-control" type="date" value="<%=@task.due_date %>">
@@ -33,12 +51,12 @@
 
   <div class="form-group">
     <label for="completion_date">Completion Date:</label>
-    <input name="" id="completion_date" class="form-control" type="text" >
+    <input name="task[completion_date]" id="completion_date" class="form-control" type="date" value="<%=@task.completion_date %>" >
   </div>
 
-  <div class="form-group">
+  <div class="form-group" "input_field">
     <label for="notes">Notes:</label>
-    <input name="" id="notes" class="form-control" type="text">
+    <textarea class="input_field" name="task[task_notes]" id="task_notes" class="form-control"><%=@task.task_notes %></textarea>
   </div>
 
   <div class="form-group">

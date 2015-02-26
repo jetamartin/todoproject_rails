@@ -1,11 +1,13 @@
-<h1>All To Do Lists</h1>
-<table >
-<tr>
+<h1>To Do Lists</h1>
+<table class="scrollable_table" >
+<thead>
+  <tr>
   <th>Name</th>
   <th>Tasks<br>TBD</th>
   <th>List Actions</th>
-</tr>
-
+  </tr>
+</thead>
+<tbody>
 <% to_dos = ToDo.all %>
 <% to_dos.each do |to_do| %>
 <tr >
@@ -17,7 +19,7 @@
   </td>
   <td>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-4">
         <%= button_to "Edit", edit_to_do_path(to_do.id), method: :get, class: "btn"%>
       </div>
       <!-- Need archive to do something different than destroy. Specifically I want archive
@@ -32,6 +34,7 @@
     </div>
   </td>
 </tr>
+</tbody>
 <% end %>
 </table>
 

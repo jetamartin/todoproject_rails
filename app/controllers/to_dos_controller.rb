@@ -6,6 +6,7 @@ class ToDosController < ApplicationController
 
   def show
     @to_do = ToDo.find(params[:id])
+    puts "======> To Do: #{@to_do.name}"
     render('tasks/show.html.erb')
   end
 

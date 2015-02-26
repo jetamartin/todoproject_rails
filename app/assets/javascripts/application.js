@@ -14,5 +14,6 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require jquery.mousewheel
+//= require jquery.fixedheadertable
 //= require to_do
