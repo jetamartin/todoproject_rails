@@ -1,46 +1,71 @@
 <h1>To Do Lists</h1>
-<table class="scrollable_table" >
-<thead>
-  <tr>
-  <th>Name</th>
-  <th>Tasks<br>TBD</th>
-  <th>List Actions</th>
-  </tr>
-</thead>
-<tbody>
-<% to_dos = ToDo.all %>
-<% to_dos.each do |to_do| %>
-<tr >
-  <td><%= link_to(to_do.name,
-            controller: 'to_dos', action: 'show', id: to_do.id) %>
-  </td>
-  <td>
-    <%= to_do.open_tasks_count %>
-  </td>
-  <td>
-    <div class="row">
-      <div class="col-sm-4">
-        <%= button_to "Edit", edit_to_do_path(to_do.id), method: :get, class: "btn"%>
-      </div>
-      <!-- Need archive to do something different than destroy. Specifically I want archive
-      to remove item from list but not delete from database. User can recover/display archived items
-      will need to add an archive field to both to_dos and tasks tables -->
-      <div class="col-sm-4">
-        <%= button_to "Archive", { action: "destroy", id: to_do.id }, method: :edit, class: "btn"%>
-      </div>
-      <div class="col-sm-4">
-        <%= button_to "Delete", to_do_path(to_do), method: :delete, data: { confirm: "Are you sure? \b Deleting a To Do List will result in deletion of its associated tasks. Deleted list (and associated task) cannot be recovered" }, class: "btn"%>
-      </div>
-    </div>
-  </td>
-</tr>
-</tbody>
-<% end %>
-</table>
+<div class="fixed-table-container zupa">
+<div class="header-background"> </div>
+  <div class="fixed-table-container-inner">
+    <table cellspacing ="0">
+      <thead>
+        <tr>
+          <th class="first">
+            <div class="zupa1">
+              <div class="th-inner">
+                <span>Name</span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="zupa1">
+              <div class="th-inner second">
+                <span>Tasks<br></span>
+              </div>
+            </div>
+          </th>
+          <th>
+            <div class="zupa1">
+              <div class="th-inner">
+                <span>Other Actions</span>
+              </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      <% to_dos = ToDo.all %>
+      <% to_dos.each do |to_do| %>
+      <tr >
+        <td class="left-justify-text" id="to-do-list-names"><%= link_to(to_do.name,
+                  controller: 'to_dos', action: 'show', id: to_do.id) %>
+        </td>
+        <td>
+          <%= to_do.open_tasks_count %>
+        </td>
+        <td>
+          <div class="row">
+            <div class="col-sm-4">
+              <%= button_to "Edit", edit_to_do_path(to_do.id), method: :get, class: "btn"%>
+            </div>
+            <!-- Need archive to do something different than destroy. Specifically I want archive
+            to remove item from list but not delete from database. User can recover/display archived items
+            will need to add an archive field to both to_dos and tasks tables -->
+            <div class="col-sm-4">
+              <%= button_to "Archive", { action: "destroy", id: to_do.id }, method: :edit, class: "btn"%>
+            </div>
+            <div class="col-sm-4">
+              <%= button_to "Delete", to_do_path(to_do), method: :delete, data: { confirm: "Are you sure? \b Deleting a To Do List will result in deletion of its associated tasks. Deleted list (and associated task) cannot be recovered" }, class: "btn"%>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+      <% end %>
+      </table>
 
-<div class="create_new_button">
-  <%= button_to "Create New To Do List", new_to_do_path, method: :get, class: "btn" %>
+    </div>
+  </div>
+  <div class="create_new_button">
+    <%= button_to "Create New To Do List", new_to_do_path, method: :get, class: "btn" %>
+  </div>
 </div>
+
+
 
 
 <% if to_dos.size == 0 %>

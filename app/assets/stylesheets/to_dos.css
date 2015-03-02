@@ -1,51 +1,355 @@
+/* +++++++++ Pure CSS Fixed Header Variable Width Table - Center Aligned (Zupa style) +++++ */
+/* ----------------------------- Body formating --------------------*/
+
+body {
+padding: 20px;
+background-color: #FFF7DC;
+color: black;
+min-width: 530px;
+}
+
 div {
-  background-color: Beige;
+display: block;
+}
+
+/* ---------------------------   Table formatting -------------------- */
+table {
+background-color: white;
+width: 100%;
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+table[Attributes Style] {
+border-spacing: 0px;
+}
+
+table {
+display: table;
+border-collapse: separate;
+border-spacing: 2px;
+border-color: gray;
 }
 
 
-table, th, td{
+
+/* ----------------------- fixed-table-container ----------------*/
+.fixed-table-container.zupa {
+width: 100%;
+height: 400px;
+border: 1px solid black;
+margin: 10px auto;
+background-color: white;
+position: relative;
+padding-top: 30px;
+}
+/* ----------------------- header-background ------------------*/
+.header-background {
+/* #D5ECFF */
+background-color: SteelBlue;
+/* Controls height of header row */
+height: 30px;
+position: absolute;
+top: 0;
+right: 0;
+left: 0;
+}
+
+/* ------------------ fixed-table-container -------------------*/
+.fixed-table-container-inner {
+overflow-x: hidden;
+overflow-y: auto;
+height: 100%;
+}
+
+
+/* ----------------------- thead --------------------------------*/
+thead {
+display: table-header-group;
+vertical-align: middle;
+border-color: inherit;
+}
+/* ----------------------- tr -----------------------------------*/
+tr {
+display: table-row;
+vertical-align: inherit;
+border-color: inherit;
+}
+
+/* ---------------------- th class="first" ----------------------*/
+th {
+padding: 0 5px;
+text-align: left;
+font-size: 18px;
+color: white;
+font-weight: bold;
+}
+
+td, th {
+display: table-cell;
+vertical-align: inherit;
+
+}
+/* ********************* div class="zupa1" ************************/
+.zupa div.zupa1 {
+margin: 0 auto !important;
+width: 0 !important;
+}
+div {
+display: block;
+}
+/*******************   div class="th-inner" ************************/
+
+.zupa div.th-inner {
+width: 100%;
+margin-left: -50%;
+text-align: center;
+border: none;
+}
+.first .th-inner {
+border-left: none;
+padding-left: 6px;
+}
+.th-inner {
+position: absolute;
+top: 0;
+line-height: 30px;
+text-align: left;
+border-left: 1px solid black;
+padding-left: 5px;
+margin-left: -5px;
+}
+
+/****************** Regular Row Formatting ****************************/
+tr {
+display: table-row;
+vertical-align: inherit;
+border-color: inherit;
+}
+
+/* ----------------- First column td ----------------------------------------*/
+td {
+border-bottom: 1px solid #ccc;
+padding: 5px;
+text-align: left;
+/* Controls width of first column */
+width: 25px;
+
+}
+td, th {
+display: table-cell;
+vertical-align: inherit;
+}
+/* ----------------- Second column td  first row-----------------------------*/
+td + td {
+border-left: 1px solid #ccc;
+}
+td {
+border-bottom: 1px solid #ccc;
+padding: 5px;
+text-align: left;
+}
+td, th {
+display: table-cell;
+vertical-align: inherit;
+}
+/* ----------------- third column td  first row-----------------------------*/
+td + td {
+border-left: 1px solid #ccc;
+}
+td {
+border-bottom: 1px solid #ccc;
+padding: 5px;
+text-align: left;
+}
+td, th {
+display: table-cell;
+vertical-align: inherit;
+}
+td {
+  text-align: center;
+}
+td.left-justify-text {
+  text-align: left;
+}
+td#to-do-list-names {
+  font-size: 18px;
+}
+/* +++++++++ Pure CSS Fixed Header Variable Width Table - Center Aligned (Zupa style) +++++ */
+/*div {
+  background-color: Beige;
+}*/
+
+
+
+/* ++++++++++++++++++++++Pure CSS Fixed Header - Same table with header style for jQuery Table Sorter plugin ++++++++++++ */
+
+/* Inherrited CSS  */
+
+/*div {
+  display: block;
+}
+
+body {
+padding: 20px;
+background-color: #FFF7DC;
+color: black;
+min-width: 995px;
+}
+
+table {
+display: table;
+border-collapse: separate;
+border-spacing: 2px;
+border-color: gray;
+}
+
+table {
+background-color: white;
+width: 100%;
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+table[Attributes Style] {
+  border-spacing: 0px;
+}
+
+/* --------------------------------------------------------------------------*/
+
+/*Fixed Table Container CSS Settings */
+/*.fixed-table-container.sort-decoration {
+  overflow-x: hidden;
+  min-width: 995px;
+}
+
+.fixed-table-container {
+  width: 50%;
+  height: 400px;
+  border: 1px solid black;
+  margin: 10px auto;
+  background-color: white;
+  position: relative;
+  padding-top: 30px;
+}*/
+
+/* ------------End Fixed Table Container CSS Settings -----------------------*/
+
+/* *************************    Header Background   **************************/
+
+/*.header-background {
+background-color: #D5ECFF;
+height: 30px;
+position: absolute;
+top: 0;
+right: 0;
+left: 0;
+}
+
+.header-background {
+border-bottom: 1px solid black;
+}*/
+
+/* **********************    End Header Background   **************************/
+
+/********************   Fixed Table Container inner  **************************/
+
+/*.fixed-table-container-inner {
+overflow-x: hidden;
+overflow-y: auto;
+height: 100%;
+}*/
+
+
+
+/*table {
+background-color: white;
+width: 100%;
+overflow-x: hidden;
+overflow-y: auto;
+}*/
+
+/********************   Fixed Table Container inner  **************************/
+/*table {
+background-color: white;
+width: 100%;
+overflow-x: hidden;
+overflow-y: auto;
+}
+
+table[Attributes Style] {
+  border-spacing: 0px;
+}*/
+
+/********************   Table Formatting **************************************/
+
+
+
+/*******************    End Table Formatting **********************************/
+/*||||||||||||||||||||||| End of Pure CSS Fixed Header |||||||||||||||||||||||||*/*/
+
+/*.fixed_header_table {
+  height: 775px;
+  overflow: auto;
+  clear: both;
+}
+
+.fixed_header_table tr {
+  display: block;
+  width: 100%;
+}
+
+.fixed_header_table tbody {
+  display: block;
+  overflow: auto;
+  height: 600px;
+}*/
+
+
+/*table, th, td{
    border: 3px solid black;
    margin: 15px;
    padding: 15px;
    font-weight: bold;
 }
 table {
-  width: 80%;
+  width: 95%;*/
+
 }
-td {
+/*td {
   background-color: Beige;
-}
-.data_filters {
+}*/
+/*.data_filters {
   border: 1px;
   margin: 15
-}
-#task_table {
+}*/
+/*#task_table {
   width: 100%;
-}
+}*/
 
-#task_column {
+/*#task_column {
   width: 55%;
-}
+}*/
 
-th {
+/*th {
     background-color: DarkRed;
     color: white;
     align: center;
     font-size: 15px;
-}
+}*/
 
 td .mark_done {
   text-align: center
-  /*back-color: DarkCyan;*/
 }
-caption {
+
+/*caption {
     display: table-caption;
     text-align: left;
-    /*color: DarkCyan;*/
     color: DarkRed;
     font-size: large;
     font-weight: bold;
-}
+}*/
+
 h1 {
     /*text-shadow: 2px 2px 8px DarkCyan;*/
     /*text-shadow: 2px 2px 8px DarkRed;*/
@@ -102,6 +406,6 @@ h1 {
   width: 100%;
   height:15%;
   overflow: scroll;
-  rows: 10; 
+  rows: 10;
 
 }
