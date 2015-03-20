@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
-
+gem 'omniauth-facebook'
+gem 'devise'
 gem 'rails'
 gem 'pg'
 gem 'sass-rails'
