@@ -4,9 +4,9 @@ class TasksController < ApplicationController
     render('to_dos/index.html.erb')
   end
 
-# Started Update Method -- but not finished or tested. Need to come back to this
   def update
     @task = Task.find(params[:id])
+    puts "===>>>>>>>>>>>>>> #{@task}"
     if @task
       @task.update(params[:task])
     end
@@ -18,7 +18,7 @@ class TasksController < ApplicationController
 
   def new
     @to_do = ToDo.find(params[:id])
-    puts "To Do found = #{@to_do}"
+    # puts "To Do found = #{@to_do}"
 #    @to_do_id = params[:id]
 
     @task = Task.new
@@ -39,10 +39,9 @@ class TasksController < ApplicationController
   def edit
 
     @task = Task.find(params[:id])
-    puts "=====> Edit Task Name #{@task.name}"
-    puts "=====> To Do Name: #{@task.to_do.name}"
-    # @to_do = @task.to_do
-    @to_do = ToDo.find(@task.to_do_id)
+    @to_do = @task.to_do
+    puts "%%%%%%%%% #{@task}"
+    # @to_do = ToDo.find(@task.to_do_id)
     @to_do_names_and_ids = ToDo.all.map{|t| [t.name, t.id]}
   end
  # Added this as a placeholder

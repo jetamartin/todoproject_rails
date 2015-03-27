@@ -5,6 +5,13 @@ require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
+
+# Per Guyren ...hmmm I already have
+require 'capybara/rspec'
+Capybara.default_driver = :selenium
+
+
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -30,9 +37,12 @@ RSpec.configure do |config|
   # Jet's changes as per: http://www.webascender.com/Blog/ID/566/Testing-Rails-4-Apps-With-RSpec-3-Part-I#.VRBs-47F98E
   # Added the following line To make the factory_girl gem’s methods (e.g., build and create) easily available in RSpec examples
   config.include FactoryGirl::Syntax::Methods
+  config.include Capybara::DSL
+  config.include Rails.application.routes.url_helpers
+
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
